@@ -1,0 +1,26 @@
+page:
+  name: page
+  in: query
+  default: 1
+  type: integer
+  required: false
+  format: int32
+  description: 页码。
+
+page_size:
+  name: page_size
+  in: query
+  type: integer
+  format: int32
+  description: 每页多少条元素。
+  required: false
+
+csrftoken:
+  name: X-CSRFToken
+  in: header
+  default: 1
+  required: true
+  description: csrftoken, 可以在cookie中找到`corftoken`。
+  type: string
+  example:
+    FI3vsQJrV2gDoJmHOPRpx3DVtmT3pW9q7HpcuTyt0f5h6Q2GbMP3cUzbzBEHbl6S

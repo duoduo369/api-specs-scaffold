@@ -1,0 +1,10 @@
+created:
+  name: created
+  type: string
+  format: date-time
+  description: 创建时间
+modified:
+  name: modified
+  type: string
+  format: date-time
+  description: 修改时间

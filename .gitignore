@@ -1,0 +1,30 @@
+# .gitignore for edx-platform.
+# There's a lot here, please try to keep it organized.
+
+### Python artifacts
+*.pyc
+
+### Editor and IDE artifacts
+*~
+*.swp
+*.orig
+/nbproject
+.idea/
+.redcar/
+codekit-config.json
+.pycharm_helpers/
+/_mac/*
+/IntelliLang.xml
+/conda_packages.xml
+/databaseSettings.xml
+/diff.xml
+/debugger.xml
+/editor.xml
+/ide.general.xml
+/inspection/Default.xml
+/other.xml
+/packages.xml
+/web-browsers.xml
+
+# Visual Studio Code
+.vscode

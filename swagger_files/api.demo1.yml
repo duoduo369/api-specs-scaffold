@@ -1,0 +1,117 @@
+openapi: '3.0.3'
+info:
+  title: API Demo Document
+  version: '1.0'
+  description:
+    "API Demo <br />
+    这个文件使用了当前文件引用、跨文件引用的例子。"
+servers:
+  - url: http://localhost:8001/api/v1/demo
+paths:
+  /documents/:
+    get:
+      summary: 获取课程文档列表
+      parameters:
+        - $ref: '_parameters.yml#/page'
+        - $ref: '_parameters.yml#/page_size'
+        - $ref: '#parameters/course'
+      responses:
+        '200':
+          description: 课程文档列表
+          content:
+            'application/json':
+              schema:
+                allOf:
+                  - $ref: '_responses.yml#/definitions/PageResponse'
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          $ref: '#/definitions/Document'
+
+  /documents/{document_id}:
+    get:
+      summary: 获取课程文档详情
+      parameters:
+        - $ref: '#parameters/document_id'
+        - $ref: '#parameters/course'
+      responses:
+        '200':
+          description: 获取文档详情
+          content:
+            'application/json':
+              schema:
+                allOf:
+                  - $ref: '#/definitions/Document'
+
+    delete:
+      summary: 删除课程文档
+      parameters:
+        - $ref: '_parameters.yml#/csrftoken'
+        - $ref: '#parameters/document_id'
+        - $ref: '#parameters/course'
+      responses:
+        '204':
+          description: 获取文档详情
+
+
+parameters:
+  document_id:
+    name: document_id
+    in: path
+    type: string
+    example:
+      4adc611f-58b7-468b-9016-3f2c515024f1
+    required: true
+  course:
+    name: course
+    in: query
+    description: course_key, 课程id
+    required: true
+    schema:
+      type: string
+
+definitions:
+  DocumentInnerCourse:
+    type: object
+    additionalProperties:
+      type: boolean
+    example:
+      dict_key_string: false
+  Document:
+    type: object
+    required:
+      - url
+      - courses
+      - created
+      - modified
+      - document_id
+    properties:
+      url:
+        type: string
+        description: url
+      courses:
+        type: array
+        items:
+          $ref: '#/definitions/DocumentInnerCourse'
+      document_id:
+        type: string
+        example:
+          4adc611f-58b7-468b-9016-3f2c515024f1
+      client_document_id:
+        type: string
+        example:
+          api-design-ebook-2012-03.pdf
+      pages:
+        type: integer
+      status:
+        type: string
+        example:
+          upload
+      error_description:
+        type: string
+      created:
+        $ref: '_definitions.yml#/created'
+      modified:
+        $ref: '_definitions.yml#/modified'

@@ -1,0 +1,52 @@
+current_page:
+  name: current_page
+  type: integer
+  format: int32
+  description: 当前页。
+
+previous:
+  name: previous
+  type: string
+  example:
+    http://localhost:8001/api/v1/demo/documents/?amp=&amp=&amp=&amp=&course=course_id&page_size=1
+  description: 前一页的api URL。
+
+next:
+  name: next
+  type: string
+  example:
+    http://localhost:8001/api/v1/demo/documents/?amp=&amp=&amp=&amp=&course=course_id&page_size=1
+  description: 后一页的api URL。
+
+count:
+  name: count
+  type: integer
+  description: 有多少个result。
+
+start:
+  name: start
+  type: integer
+  description: start。
+
+num_pages:
+  name: num_pages
+  type: integer
+  description: 总共有多少页。
+
+
+definitions:
+  PageResponse:
+    type: object
+    properties:
+      count:
+        $ref: '#/count'
+      start:
+        $ref: '#/start'
+      current_page:
+        $ref: '#/current_page'
+      previous:
+        $ref: '#/previous'
+      next:
+        $ref: '#/next'
+      num_pages:
+        $ref: '#/num_pages'

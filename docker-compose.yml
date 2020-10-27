@@ -1,0 +1,22 @@
+version: "3.3"
+services:
+  swagger-ui:
+    image: swaggerapi/swagger-ui
+    container_name: "api-specs"
+    ports:
+      - "8091:8080"
+    volumes:
+      - ./swagger_files/_parameters.yml:/_parameters.yml
+      - ./swagger_files/_responses.yml:/_responses.yml
+      - ./swagger_files/_definitions.yml:/_definitions.yml
+      - ./swagger_files/_metadata.yml:/_metadata.yml
+      - ./swagger_files/api.demo1.yml:/api.demo1.yml
+      - ./swagger_files/api.demo2.yml:/api.demo2.yml
+    environment:
+      SWAGGER_JSON: /api.demo1.yml
+      URLS_PRIMARY_NAME: api.demo1
+      URLS: >
+        [
+            {"name": "api.demo1", "url": "api.demo1.yml"},
+            {"name": "api.demo2", "url": "api.demo2.yml"}
+        ]
